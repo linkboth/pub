@@ -1,1 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interpreting Your Energy...</title>
 
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: Georgia, serif;
+      color: #f5e6c8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, #5a0a0a, #1a0202);
+      overflow: hidden;
+    }
+
+    /* 阴阳水印 */
+    body::before {
+      content: "☯";
+      position: absolute;
+      font-size: 420px;
+      opacity: 0.08;
+      animation: pulse 4s infinite ease-in-out;
+    }
+
+    /* 能量环 */
+    body::after {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border: 2px solid rgba(255, 215, 120, 0.18);
+      border-radius: 50%;
+      animation: spin 14s linear infinite;
+    }
+
+    .card {
+      z-index: 2;
+      text-align: center;
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(40, 10, 10, 0.75);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 215, 120, 0.2);
+      width: 90%;
+      max-width: 600px;
+    }
+
+    h1 {
+      color: #f5d27a;
+      margin-bottom: 10px;
+      font-size: 34px;
+    }
+
+    p {
+      opacity: 0.8;
+      margin-bottom: 20px;
+    }
+
+    .steps {
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    .step {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeIn 1s forwards;
+      margin: 12px 0;
+    }
+
+    .step:nth-child(1) { animation-delay: 0.5s; }
+    .step:nth-child(2) { animation-delay: 2s; }
+    .step:nth-child(3) { animation-delay: 3.5s; }
+
+    .dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: #f5d27a;
+      border-radius: 50%;
+      margin-right: 10px;
+      box-shadow: 0 0 10px #f5d27a;
+    }
+
+    /* loading bar */
+    .bar {
+      margin-top: 25px;
+      height: 6px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .bar::after {
+      content: "";
+      display: block;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, #f5d27a, transparent);
+      animation: move 2s infinite;
+    }
+
+    @keyframes move {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(300%); }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%,100% { transform: scale(1); opacity: 0.08; }
+      50% { transform: scale(1.1); opacity: 0.12; }
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>Interpreting Your Energy</h1>
+    <p>Aligning your zodiac, element, and today's energy flow...</p>
+
+    <div class="steps">
+      <div class="step"><span class="dot"></span>Identifying your zodiac pattern</div>
+      <div class="step"><span class="dot"></span>Analyzing elemental balance</div>
+      <div class="step"><span class="dot"></span>Generating your personalized reading</div>
+    </div>
+
+    <div class="bar"></div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get("name") || "Friend";
+    const birthDate = params.get("birthDate") || "";
+
+    // ⚠️ 你的n8n结果页地址（不用改）
+    const resultBase = "https://n8n-wanxxtrw.ap-southeast-1.clawcloudrun.com/webhook/daily-energy-result";
+
+    setTimeout(() => {
+      const target = `${resultBase}?name=${encodeURIComponent(name)}&birthDate=${encodeURIComponent(birthDate)}`;
+      window.location.href = target;
+    }, 6000);
+  </script>
+
+</body>
+</html>
