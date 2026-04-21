@@ -151,26 +151,26 @@
   const birthDate = params.get("birthDate");
 
   const secretKey = "mystic_gate_2026_88";
-  const api = "http://54.255.171.155:5678/webhook/daily-energy-result";
+  const resultBase = "http://54.255.171.155:5678/webhook/daily-energy-result";
 
   if (!name || !birthDate) {
-    document.body.innerHTML = "<h2 style='text-align:center;margin-top:100px;color:#fff;'>Missing parameters</h2>";
+    document.body.innerHTML = `
+      <div style="
+        color:#f5d78e;
+        text-align:center;
+        margin-top:120px;
+        font-size:20px;
+        font-family:serif;
+      ">
+        ✨ The ritual cannot begin...<br><br>
+        Missing essential information.
+      </div>
+    `;
   } else {
     setTimeout(() => {
-      const url = `${api}?name=${encodeURIComponent(name)}&birthDate=${encodeURIComponent(birthDate)}&key=${secretKey}`;
-
-      fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          document.open();
-          document.write(html);
-          document.close();
-        })
-        .catch(() => {
-          document.body.innerHTML = "<h2 style='text-align:center;margin-top:100px;color:#fff;'>Server Error</h2>";
-        });
-
-    }, 2000);
+      const target = `${resultBase}?name=${encodeURIComponent(name)}&birthDate=${encodeURIComponent(birthDate)}&key=${encodeURIComponent(secretKey)}`;
+      window.location.href = target;
+    }, 2500);
   }
 </script>
 
