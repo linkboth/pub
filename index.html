@@ -145,19 +145,19 @@
     <div class="bar"></div>
   </div>
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const name = params.get("name") || "Friend";
-    const birthDate = params.get("birthDate") || "";
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const name = params.get("name") || "Friend";
+  const birthDate = params.get("birthDate") || "";
 
-    // ⚠️ 你的n8n结果页地址（不用改）
-    const resultBase = "http://54.255.171.155:5678/webhook/daily-energy-result";
+  const secretKey = "mystic_gate_2026_88";
+  const resultBase = "http://54.255.171.155:5678/webhook/daily-energy-result";
 
-    setTimeout(() => {
-      const target = `${resultBase}?name=${encodeURIComponent(name)}&birthDate=${encodeURIComponent(birthDate)}`;
-      window.location.href = target;
-    }, 6000);
-  </script>
+  setTimeout(() => {
+    const target = `${resultBase}?name=${encodeURIComponent(name)}&birthDate=${encodeURIComponent(birthDate)}&key=${encodeURIComponent(secretKey)}`;
+    window.location.href = target;
+  }, 6000);
+</script>
 
 </body>
 </html>
