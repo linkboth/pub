@@ -153,6 +153,7 @@
   const secretKey = "mystic_gate_2026_88";
   const resultBase = "http://54.255.171.155:5678/webhook/daily-energy-result";
 
+  // 参数校验（更优雅）
   if (!name || !birthDate) {
     document.body.innerHTML = `
       <div style="
@@ -170,7 +171,7 @@
     setTimeout(() => {
       const target = `${resultBase}?name=${encodeURIComponent(name)}&birthDate=${encodeURIComponent(birthDate)}&key=${encodeURIComponent(secretKey)}`;
       window.location.href = target;
-    }, 2500);
+    }, 2500); // 建议改短一点，体验更好
   }
 </script>
 
